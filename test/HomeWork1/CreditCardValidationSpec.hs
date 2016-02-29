@@ -19,4 +19,8 @@ spec = do
   describe "doubleEveryOther" $ do
     it "should double every other number beginning from the right" $ do
       doubleEveryOther [8,7,6,5] `shouldBe` [16,7,12,5]
-      doubleEveryOther [1,2,3] `shouldBe` [1,4,3] 
+      doubleEveryOther [1,2,3] `shouldBe` [1,4,3]
+  describe "sumDigits" $ do
+    it "to calculate the sum of all digits" $ do
+      sumDigits [] `shouldBe` 0
+      sumDigits [16,7,12,5] `shouldBe` 22
