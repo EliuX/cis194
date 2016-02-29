@@ -19,6 +19,7 @@ library
   hs-source-dirs:      src
   exposed-modules:
         HomeWork1.CreditCardValidation
+        HomeWork1.HanoiTower
   build-depends:       base >= 4.7 && < 5
   default-language:    Haskell2010
 
