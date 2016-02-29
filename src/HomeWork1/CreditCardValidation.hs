@@ -1,28 +1,25 @@
-module HomeWork1.CreditCardValidation (toDigits, doubleEveryOther, sumDigits)  where
+module HomeWork1.CreditCardValidation (toDigits, doubleEveryOther, sumDigits, validate)  where
 
+import Common
+
+--converts an Integer to a List of Digits--
 toDigits :: Integer -> [Integer]
 toDigits num
       | num >= 10 = (toDigits (div num 10)) ++ [mod num 10]
       | num <= 0 = []
       | otherwise = [num]
 
+--should double every other number beginning from the right--
 doubleEveryOther :: [Integer] -> [Integer]
 doubleEveryOther nl = [ if (isEvenBackwards position total) then val*2 else val  | (position, val)<-nlTuples]
                       where total = length nl
-                            nlTuples = zip [1..] nl
+                            nlTuples = zip [1..total] nl
 
+--to calculate the sum of all digits--
 sumDigits :: [Integer] -> Integer
 sumDigits [] = 0
-sumDigits (x:rest) = sum (toDigits x) + sumDigits rest 
+sumDigits (x:rest) = sum (toDigits x) + sumDigits rest
 
-sumEveryTwo :: [Integer] -> [Integer]
-sumEveryTwo []         = []     -- Do nothing to the empty list
-sumEveryTwo (x:[])     = [x]    -- Do nothing to lists with a single element
-sumEveryTwo (x:(y:zs)) = (x + y) : sumEveryTwo zs
-
-
-isEven :: Int -> Bool
-isEven x = mod x 2 == 0
-
-isEvenBackwards :: Int -> Int -> Bool
-isEvenBackwards position total = isEven (total - position + 1)
+--Validates if a credit card is valid--
+validate :: Integer -> Bool
+validate cardNum = (sumDigits ( doubleEveryOther (toDigits cardNum))) `mod` 10 == 0

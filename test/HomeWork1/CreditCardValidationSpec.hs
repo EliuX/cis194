@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wall #-}
 module HomeWork1.CreditCardValidationSpec (main, spec) where
 
 import Test.Hspec
@@ -24,3 +25,7 @@ spec = do
     it "to calculate the sum of all digits" $ do
       sumDigits [] `shouldBe` 0
       sumDigits [16,7,12,5] `shouldBe` 22
+  describe "validate" $ do
+    it "Validates if a credit card is valid" $ do
+      validate 4012888888881881 `shouldBe` True
+      validate 4012888888881882 `shouldBe` False
