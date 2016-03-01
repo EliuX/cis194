@@ -20,12 +20,14 @@ library
   exposed-modules:
         HomeWork1.CreditCardValidation
         HomeWork1.HanoiTower
+        HomeWork2.LogAnalysis
+        HomeWork2.Log 
+  ghc-options:         -Wall
   build-depends:       base >= 4.7 && < 5
   default-language:    Haskell2010
 
-test-suite cis194-test
-  ghc-options:
-     -Wall
+test-suite specs
+  ghc-options:         -Wall
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   main-is:             Spec.hs
