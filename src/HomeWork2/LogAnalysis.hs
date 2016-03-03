@@ -1,5 +1,5 @@
 {-# OPTIONS_GHC -Wall #-}
-module HomeWork2.LogAnalysis (parseMessage, parse) where 
+module HomeWork2.LogAnalysis (parseMessage, parse, build, inOrder) where 
 
 import  HomeWork2.Log
 
@@ -18,24 +18,24 @@ parse text = [parseMessage line | line <- lines text ]
 
 -- converts a Numeric String to an Int
 toInt :: String -> Int
-toInt x = read x :: Int
-
---- Functions for Ordering
+toInt x = read x :: Int 
 
 -- inserts a new LogMessage into an existing MessageTree, producing a new MessageTree
-insert :: LogMessage -> MessageTree -> MessageTree
-insert msg tree = case tree of
-                   Leaf -> Node Leaf msg Leaf
-                   _    -> insert msg (whereMsgGoes msg tree)
+insert :: LogMessage -> MessageTree -> MessageTree 
+insert msg branch@(Node ln nodeMsg rn) = if(getMsgDate msg < getTreeDate branch) 
+                                         then Node (insert msg ln) nodeMsg rn 
+                                         else Node ln nodeMsg (insert msg rn)  
+insert msg _                           = Node Leaf msg Leaf     
 
--- Returns the node where a LogMessage should go : left or right?---
-whereMsgGoes :: LogMessage -> MessageTree -> MessageTree
-whereMsgGoes msg tree           
-      | dateMsgToAdd < dateCurrentMsg = leftNode
-      | otherwise = rightNode
-      where (LogMessage _ dateMsgToAdd _) = msg
-            (Node leftNode currentMsg rightNode ) = tree
-            (LogMessage _ dateCurrentMsg _) = currentMsg
+
+getMsgDate  :: LogMessage -> TimeStamp
+getMsgDate (LogMessage _ dateMsgToAdd _) = dateMsgToAdd
+getMsgDate _                             = 0
+
+getTreeDate  :: MessageTree -> TimeStamp
+getTreeDate (Node _ currentMsg _) = getMsgDate currentMsg
+getTreeDate _                     = 0
+
 
 --builds a complete MessageTree from a list of messages
 build :: [LogMessage] -> MessageTree
