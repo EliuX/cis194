@@ -1,4 +1,4 @@
-module HomeWork3.Golf (skips) where 
+module HomeWork3.Golf (skips, histogram) where 
 
 -- The first list in the output should be the same as the input list
 -- The second list in the output should contain every second element from the input list
@@ -7,8 +7,24 @@ skips :: [a] -> [[a]]
 skips [] = []
 skips ls = [everyEach i ls | i <- [1..length ls]]
 
-everyEach :: Int -> [a] -> [a]
-everyEach 1 lst = lst 
-everyEach n lst
-        | n > 1 = [ lst!!(p-1) | p <-[n,(n+n)..(length lst)]] 
-        | otherwise = [] 
+-- Devuelve todos los elementos a cada posicion n de una lista lst
+everyEach :: Int -> [a] -> [a] 
+everyEach n lst = 
+
+--A list of list of differents combinations of the passed list--
+localMaxima :: [Integer] -> [Integer]
+
+-- takes as input a list of Integers between 0 and 9 (inclusive),and outputs a vertical histogram 
+-- showing how many of each number were in the input list
+histogram :: [Int] -> String
+histogram numList = printHist (histogramMap numList) 
+
+histogramMap :: [Int] -> [Int]
+histogramMap numList = [length(filter (==n) numList) | n <- [1..9]]
+
+printHistLine :: Int -> [Int] -> [Char]
+printHistLine ln timesList = [if ln <= times then '*' else ' ' | times <- timesList] 
+
+printHist :: [Int] -> [Char] 
+printHist timesList@(x:_) = let maxVal = maximum timesList in unlines([printHistLine n timesList | n <- [maxVal, maxVal-1..1]] ++ ["==========","0123456789"]) 
+printHist _ = ""            
