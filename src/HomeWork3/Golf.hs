@@ -10,7 +10,7 @@ skips ls = [everyEach i ls | i <- [1..length ls]]
 -- Devuelve todos los elementos a cada posicion n de una lista lst
 everyEach :: Int -> [a] -> [a]
 everyEach n lst = case drop (n-1) lst of
-                    [] -> []
+                    []     -> []
                     (x:xs) -> x:(everyEach n xs)
 
 --A list of list of differents combinations of the passed list--

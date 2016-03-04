@@ -24,6 +24,7 @@ library
         HomeWork2.LogAnalysis
         HomeWork2.Log
         HomeWork3.Golf
+        HomeWork4.Folding
   ghc-options:         -Wall
   build-depends:       base >= 4.7 && < 5
   default-language:    Haskell2010
