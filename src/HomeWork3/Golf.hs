@@ -1,4 +1,4 @@
-module HomeWork3.Golf (skips, histogram) where 
+module HomeWork3.Golf (skips, localMaxima, histogram) where
 
 -- The first list in the output should be the same as the input list
 -- The second list in the output should contain every second element from the input list
@@ -8,11 +8,18 @@ skips [] = []
 skips ls = [everyEach i ls | i <- [1..length ls]]
 
 -- Devuelve todos los elementos a cada posicion n de una lista lst
-everyEach :: Int -> [a] -> [a] 
-everyEach n lst = 
+everyEach :: Int -> [a] -> [a]
+everyEach n lst = case drop (n-1) lst of
+                    [] -> []
+                    (x:xs) -> x:(everyEach n xs)
 
 --A list of list of differents combinations of the passed list--
 localMaxima :: [Integer] -> [Integer]
+localMaxima (a:b:c:rest)
+           | a < b && b > c = b:(localMaxima nextGroup)
+           | otherwise      = localMaxima nextGroup
+           where nextGroup  = b:c:rest
+localMaxima _               = []
 
 -- takes as input a list of Integers between 0 and 9 (inclusive),and outputs a vertical histogram 
 -- showing how many of each number were in the input list
