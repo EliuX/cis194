@@ -28,6 +28,8 @@ library
         HomeWork5.Calc
         HomeWork5.ExprT
         HomeWork5.Parser
+        HomeWork5.MinMax
+        HomeWork5.Mod7
   ghc-options:         -Wall
   build-depends:       base >= 4.7 && < 5
   default-language:    Haskell2010
