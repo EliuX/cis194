@@ -1,4 +1,4 @@
-module HomeWork5.Calc(eval, evalStr) where
+module HomeWork5.Calc(eval, evalStr, lit, mul, add, reify) where
 
 import HomeWork5.ExprT
 import HomeWork5.Parser
@@ -7,15 +7,15 @@ import HomeWork5.Parser
 class Calculable a where
  eval :: a -> Integer
 
-class Expr a where
- lit :: a
- mul :: a
- add :: a
+class (Show a) => Expr a where
+ lit :: Integer -> a
+ mul :: a -> a -> a
+ add :: a -> a -> a
 
-instance Expr (Calculable ExprT) where
- lit = Lit
- mul = Mul
- add = Add
+instance Expr ExprT where
+ lit x = Lit x
+ mul x y = Mul x y
+ add x y = Add x y
 
 -- evals an ExprT expression calculating the contained math expression in it
 instance Calculable ExprT where
@@ -29,3 +29,7 @@ evalStr :: String -> Maybe Integer
 evalStr x = case parseExp Lit Add Mul x of
                 Just a -> Just (eval a)
                 _      -> Nothing
+
+
+reify :: ExprT -> ExprT
+reify = id
