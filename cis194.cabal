@@ -24,6 +24,10 @@ library
         HomeWork2.LogAnalysis
         HomeWork2.Log
         HomeWork3.Golf
+        HomeWork4.Folding
+        HomeWork5.Calc
+        HomeWork5.ExprT
+        HomeWork5.Parser
   ghc-options:         -Wall
   build-depends:       base >= 4.7 && < 5
   default-language:    Haskell2010
