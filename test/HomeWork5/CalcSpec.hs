@@ -4,6 +4,7 @@ module HomeWork5.CalcSpec (main, spec) where
 import Test.Hspec
 import HomeWork5.Calc
 import HomeWork5.ExprT
+import HomeWork5.Parser
 
 main :: IO()
 main = hspec spec 
@@ -16,6 +17,6 @@ spec = do
    eval (Mul (Lit 6) (Add (Lit 4) (Lit 2))) `shouldBe` 36
  describe "evalStr" $ do
   it "Produces a Just Integer for an expression or nothing to non well formed expressions" $ do
-   evalStr "(2+3)*4" `shouldBe` Just 10
+   evalStr "(2+3)*4" `shouldBe` Just 20
    evalStr "2+3*4" `shouldBe` Just 14
    evalStr "2+3*" `shouldBe` Nothing
