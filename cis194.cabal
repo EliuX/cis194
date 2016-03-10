@@ -26,8 +26,10 @@ library
         HomeWork3.Golf
         HomeWork4.Folding
         HomeWork5.Calc
-        HomeWork5.Parser
         HomeWork5.ExprT
+        HomeWork5.Parser
+        HomeWork5.MinMax
+        HomeWork5.Mod7
         HomeWork6.Fibonacci
   ghc-options:         -Wall
   build-depends:       base >= 4.7 && < 5
