@@ -33,7 +33,7 @@ instance Expr Integer where
 -- Instance of Bool
 instance Expr Bool where
  lit x
-    | (x>0)= True
+    | (x > 0)= True
     | otherwise = False
  mul x y = x || y
  add x y = x && y
