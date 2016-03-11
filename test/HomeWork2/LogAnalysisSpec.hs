@@ -2,8 +2,6 @@
 module HomeWork2.LogAnalysisSpec (main, spec) where
 
 import Test.Hspec
-import System.IO  
-import Control.Monad
 import HomeWork2.LogAnalysis
 import HomeWork2.Log
 
