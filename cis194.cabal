@@ -2,7 +2,7 @@ name:                cis194
 version:             0.1.0.0
 synopsis:            Learning stack with the CIS194 course
 description:         Please see README.md
-homepage:            http://github.com/githubuser/cis194#readme
+homepage:            http://github.com/EliuX/cis194#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Eliecer Hernandez
@@ -31,8 +31,13 @@ library
         HomeWork5.MinMax
         HomeWork5.Mod7
         HomeWork6.Fibonacci
+        HomeWork7.Buffer
+        HomeWork7.StringBuffer
+        HomeWork12.Risk
   ghc-options:         -Wall
   build-depends:       base >= 4.7 && < 5
+                       ,mtl
+                       ,MonadRandom
   default-language:    Haskell2010
 
 test-suite specs
